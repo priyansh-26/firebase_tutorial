@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, unused_local_variable, body_might_complete_normally_nullable
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_tutorial/forgetpassword.dart';
 import 'package:firebase_tutorial/main.dart';
 import 'package:firebase_tutorial/signuppage.dart';
 import 'package:firebase_tutorial/uihelper.dart';
@@ -26,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
         usercredential = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: email, password: password)
             .then((value) {
-          Navigator.push(
+          Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                   builder: (context) => MyHomePage(title: "Home Page")));
@@ -80,6 +81,19 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ForgotPassword()));
+            },
+            child: Text(
+              "Forgot Password",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+            ),
           ),
         ],
       ),

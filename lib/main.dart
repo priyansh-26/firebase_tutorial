@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_tutorial/checkuser.dart';
 import 'package:firebase_tutorial/loginpage.dart';
+// import 'package:firebase_tutorial/loginpage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -45,6 +47,13 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  logout() async {
+    FirebaseAuth.instance.signOut().then((value) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => LoginPage()));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,13 +72,17 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            FloatingActionButton(
+              onPressed: _incrementCounter,
+              child: const Icon(Icons.add),
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: logout,
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.logout),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

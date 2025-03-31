@@ -25,7 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
         usercredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(email: email, password: password)
             .then((value) {
-          Navigator.push(
+          Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                   builder: (context) => MyHomePage(title: "Home Page")));
